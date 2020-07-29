@@ -142,10 +142,6 @@ class Post {
 		$page = $data['page']; 
 		$userLoggedIn = $this->user_obj->getUsername();
 
-		if($page == 1) 
-			$start = 0;
-		else 
-			$start = ($page - 1) * $limit;
 
 
 		$str = ""; //String to return 

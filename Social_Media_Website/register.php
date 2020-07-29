@@ -2,6 +2,7 @@
 require 'config/config.php';
 require 'includes/form_handlers/register_handler.php';
 require 'includes/form_handlers/login_handler.php';
+require 'reset_password/reset_password_form/forgot_password_handler.php';
 ?>
 
 
@@ -30,15 +31,31 @@ require 'includes/form_handlers/login_handler.php';
 		';
 	}
 
+	if(isset($_POST['forgot_password_button'])) {
+		echo '
+		<script>
+
+		$(document).ready(function() {
+			$("#first").hide();
+			$("#second").hide();
+			$("#third").show();
+		});
+
+		</script>
+
+		';
+	}
+
 
 	?>
+
 
 	<div class="wrapper">
 
 		<div class="login_box">
 
 			<div class="login_header">
-				<h1>Wix Social</h1>
+				<h1>Brainstorm Social</h1>
 				Login or sign up below
 			</div>
 			<br>
@@ -56,6 +73,8 @@ require 'includes/form_handlers/login_handler.php';
 					<?php if(in_array("Email or password was incorrect<br>", $error_array)) echo  "Email or password was incorrect<br>"; ?>
 					<input type="submit" name="login_button" value="Login">
 					<br>
+					<a href="#" id="reset" class="reset">Forgot Password?</a>
+					<hr>
 					<a href="#" id="signup" class="signup">Register here!</a>
 
 				</form>
@@ -117,6 +136,26 @@ require 'includes/form_handlers/login_handler.php';
 					<?php if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>"; ?>
 					<a href="#" id="signin" class="signin">Already have an account? Sign in here!</a>
 				</form>
+			</div>
+
+			<div id="third">
+
+				<form action="register.php" method="POST">
+
+					<div class="form-group">
+						<h3>Forgot Password?</h3>
+						<label for="email" class="sr-only">Enter Email: </label>
+						<input type="email" name="forgot_password_email" class="form-control" id="email" autocomplete="off">
+						<br>
+						<input type="submit" name="forgot_password_button" value="Send Email" class="btn btn-primary">
+						<?php if(in_array("<span style='color: #14C800;'>Reset password link has been sent to your email!</span><br>", $success_array)) echo "<span style='color: #14C800;'>Reset password link has been sent to your email!</span><br>";?>
+						<br>
+						<a href="#" id="goback" class="goback">To go back click here!</a>
+					</div>
+					
+					
+				</form>
+
 			</div>
 
 		</div>

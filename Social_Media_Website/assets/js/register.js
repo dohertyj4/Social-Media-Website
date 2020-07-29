@@ -14,5 +14,19 @@ $(document).ready(function() {
 		});
 	});
 
+	//On click reset, hide login and show reset form
+	$("#reset").click(function() {
+		$("#first").slideUp("slow", function(){
+			$("#third").slideDown("slow");
+		});
+	});
+
+		//On click goback, go back to the original page
+		$("#goback").click(function() {
+			$("#third").slideUp("slow", function(){
+				$("#first").slideDown("slow");
+			});
+		});
+
 
 });

@@ -26,6 +26,10 @@ a {
 	color: #e9d525;
 }
 
+hr{
+	color: #e9d525;
+}
+
 .wrapper {
 	background-image: url("../images/backgrounds/desktop.jpg");
 	background-size: 100%;
@@ -98,6 +102,6 @@ input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hove
 	display: none;
 }
 
-
-
-
+#third {
+	display: none;
+}

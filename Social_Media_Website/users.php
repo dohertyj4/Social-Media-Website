@@ -19,13 +19,13 @@
                             <table class="table table-hover table-striped" id="dataTable">
 
                                 <thead>
-                                    <th><a href="users.php?sortF=fname" id="userdetails"> First Name &nbsp  <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="users.php?sortL=lname" id="userdetails"> Last Name &nbsp   <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="users.php?sortE=email" id="userdetails"> Email &nbsp       <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="users.php?sortD=date"  id="userdetails"> Profile Picture &nbsp <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="users.php"             id="userdetails"> Number of Posts &nbsp      <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="users.php"             id="userdetails"> Number of likes &nbsp      <i class="fas fa-sort"></i></a></th>
-                                    <th><a href="users.php"             id="userdetails"> Add Friend &nbsp      <i class="fas fa-sort"></i></a></th>
+                                    <th><a href="users.php" id="userdetails"> First Name &nbsp</a></th>
+                                    <th><a href="users.php" id="userdetails"> Last Name &nbsp</a></th>
+                                    <th><a href="users.php" id="userdetails"> Email &nbsp</a></th>
+                                    <th><a href="users.php"  id="userdetails"> Profile Picture &nbsp</a></th>
+                                    <th><a href="users.php"             id="userdetails"> Number of Posts &nbsp</i></a></th>
+                                    <th><a href="users.php"             id="userdetails"> Number of likes &nbsp</i></a></th>
+                                    <th><a href="users.php"             id="userdetails"> Add Friend &nbsp</a></th>
                                 </thead>
 
                                 

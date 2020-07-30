@@ -21,7 +21,6 @@ else {
 <head>
 	<title>Welcome to Brainstorm Social</title>
 
-	<!-- Javascript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.js"></script>
 	<script src="assets/js/bootbox.min.js"></script>
@@ -29,8 +28,6 @@ else {
 	<script src="assets/js/jquery.jcrop.js"></script>
 	<script src="assets/js/jcrop_bits.js"></script>
 
-
-	<!-- CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -45,26 +42,6 @@ else {
 		</div>
 
 
-		<div class="search">
-
-			<form action="search.php" method="GET" name="search_form">
-				<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
-
-				<div class="button_holder">
-					<img src="assets/images/icons/magnifying_glass.png">
-				</div>
-
-			</form>
-
-			<div class="search_results">
-			</div>
-
-			<div class="search_results_footer_empty">
-			</div>
-
-
-
-		</div>
 
 		<nav>
 			<?php
@@ -81,6 +58,9 @@ else {
 				$num_requests = $user_obj->getNumberOfFriendRequests();
 			?>
 
+			<a class="search_users" href="users.php">
+				<i class="fa fa-users">Click here to search for and add friends</i>
+			</a>
 
 			<a href="<?php echo $userLoggedIn; ?>">
 				<?php echo $user['first_name']; ?>
@@ -167,7 +147,7 @@ else {
 
 			return false;
 
-		}); //End (window).scroll(function())
+		});
 
 
 	});

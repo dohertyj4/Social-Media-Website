@@ -110,17 +110,33 @@ if(isset($_POST['register_button'])){
 		}
 
 		//Profile picture assignment
-		$rand = rand(1, 2); //Random number between 1 and 2
+		$rand = rand(1, 10); //Random number between 1 and 16
 
 		if($rand == 1)
-			$profile_pic = "assets/images/profile_pics/defaults/head_deep_blue.png";
+			$profile_pic = "assets/images/profile_pics/defaults/head_alizarin.png";
 		else if($rand == 2)
+			$profile_pic = "assets/images/profile_pics/defaults/head_amethyst.png";
+		else if($rand == 3)
+			$profile_pic = "assets/images/profile_pics/defaults/head_belize_hole.png";
+		else if($rand == 4)
+			$profile_pic = "assets/images/profile_pics/defaults/head_carrot.png";
+		else if($rand == 5)
+			$profile_pic = "assets/images/profile_pics/defaults/head_deep_blue.png";
+		else if($rand == 6)
 			$profile_pic = "assets/images/profile_pics/defaults/head_emerald.png";
+		else if($rand == 7)
+			$profile_pic = "assets/images/profile_pics/defaults/head_green_sea.png";
+		else if($rand == 8)
+			$profile_pic = "assets/images/profile_pics/defaults/head_nephritis.png";
+		else if($rand == 9)
+			$profile_pic = "assets/images/profile_pics/defaults/head_sun_flower.png";
+		else if($rand == 10)
+			$profile_pic = "assets/images/profile_pics/defaults/head_wet_asphalt.png";
 
 
 		$query = mysqli_query($con, "INSERT INTO users VALUES ('', '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
 
-		array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
+		array_push($error_array, "<span style='color: #14C800;'>You're all set. Go ahead and login!</span><br>");
 
 		//Clear session variables 
 		$_SESSION['reg_fname'] = "";

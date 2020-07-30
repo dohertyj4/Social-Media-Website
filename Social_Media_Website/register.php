@@ -8,10 +8,12 @@ require 'reset_password/reset_password_form/forgot_password_handler.php';
 
 <html>
 <head>
-	<title>Welcome to Wix Social!</title>
+	<title>Welcome to Brainstorm Social!</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -73,6 +75,7 @@ require 'reset_password/reset_password_form/forgot_password_handler.php';
 					<?php if(in_array("Email or password was incorrect<br>", $error_array)) echo  "Email or password was incorrect<br>"; ?>
 					<input type="submit" name="login_button" value="Login">
 					<br>
+					<i class="fa fa-wrench"></i>
 					<a href="#" id="reset" class="reset">Forgot Password?</a>
 					<hr>
 					<a href="#" id="signup" class="signup">Register here!</a>

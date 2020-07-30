@@ -3,16 +3,16 @@ include("includes/header.php");
 include("includes/form_handlers/settings_handler.php");
 ?>
 
-<div class="main_column column">
+<div class="column_center">
 
 	<h4>Account Settings</h4>
 	<?php
-	echo "<img src='" . $user['profile_pic'] ."' class='small_profile_pic'>";
+	echo "<img src='" . $user['profile_pic'] ."' class='profile_pic_settings'>";
 	?>
 	<br>
 	<a href="upload.php">Upload new profile picture</a> <br><br><br>
 
-	Modify the values and click 'Update Details'
+	Modify the values
 
 	<?php
 	$user_data_query = mysqli_query($con, "SELECT first_name, last_name, email FROM users WHERE username='$userLoggedIn'");
@@ -37,7 +37,7 @@ include("includes/form_handlers/settings_handler.php");
 	<form action="settings.php" method="POST">
 		Old Password: <input type="password" name="old_password" id="settings_input"><br>
 		New Password: <input type="password" name="new_password_1" id="settings_input"><br>
-		New Password Again: <input type="password" name="new_password_2" id="settings_input"><br>
+		Confirm Password: <input type="password" name="new_password_2" id="settings_input"><br>
 
 		<?php echo $password_message; ?>
 

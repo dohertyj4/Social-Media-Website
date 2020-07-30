@@ -9,7 +9,7 @@
 
 body {
 	line-height: 17px;
-	background-color: #E6EAE8;
+	background-color: #e0ece6;
 }
 
 a {
@@ -21,8 +21,8 @@ a {
 	width: 100%;
 	min-width: 1050px;
 	height: 40px;
-	background-color: #427286;
-	border-bottom: 0.25em solid #1894ca;
+	background-color: #00709e;
+	border-bottom: 0.25em solid #60cfff;
 	margin: 0 0 10px 0;
 	display: inline-flex;
 	position: fixed;
@@ -35,8 +35,8 @@ a {
 	font-size: 30;
 	position: relative;
 	top: 9px;
-	text-shadow: #73B6E2 0.5px 0.5px 0px;
-	color: #1086BA;
+	text-shadow: #000000 0.7px 0.7px 0px;
+	color: #ffffff;
 }
 
 a:hover {
@@ -64,27 +64,46 @@ nav a:hover {
 
 .wrapper {
 	margin: 0 auto;
-	top: 50px;
+	top: 60px;
 	position: relative;
 	padding: 0 10px;
-	width: 75%;
+	width: 85%;
 	min-width: 950px;
 }
 
 .column {
-	background-color: #fff;
+	background-color: #f5f5f5;
 	padding: 10px;
-	border: 1px solid #D3D3D3;
+	border: 1px solid #797979;
 	border-radius: 5px;
-	box-shadow: 2px 2px 1px #D3D3D3;
+	box-shadow: 2px 2px 1px #797979;
 	z-index: -1;
 	color: #555;
 }
 
+
+.column_center {
+	background-color: #f5f5f5;
+	padding: 10px;
+	border: 1px solid #797979;
+	border-radius: 5px;
+	box-shadow: 2px 2px 1px #797979;
+	z-index: -1;
+	color: #555;
+	text-align: center;
+}
+
 .user_details {
-	width: 250px;
+	width: 295px;
 	float: left;
 	margin-bottom: 20px;
+}
+
+.user_details_trends {
+	width: 295px;
+	float: left;
+	margin-bottom: 30px;
+	height: 400px;
 }
 
 .user_details img {
@@ -131,7 +150,6 @@ textarea:focus {
 	border-radius: 3px;
 	background-color: #3498db;
 	font-family: 'Bellota-BoldItalic', sans-serif;
-	color: rgb(19, 63, 107);
 	text-shadow: #73B6E2 0.5px 0.5px 0px;
 	font-size: 90%;
 	position: absolute;
@@ -480,20 +498,9 @@ textarea:focus {
 	margin: 0;
 }
 
-.search {
-	margin: 8px 0 0 15%;
-}
-
-.search #search_text_input {
-	border: thin solid #E5E5E5;
-  	float: left;
-  	height: 23px;
-  	outline: 0;
-  	width: 100px;
-  	border-top-right-radius: 0;
-  	border-bottom-right-radius: 0;
-  	border-top-left-radius: 3px;
-  	border-bottom-left-radius: 3px;
+.search_users {
+	color: white;
+	right: 500px;
 }
 
 .button_holder {
@@ -565,6 +572,12 @@ textarea:focus {
     float: left;
 }
 
+.profile_pic_settings {
+	height: 55px;
+    margin: 1px 12px 0 2px;
+	text-align: center;
+}
+
 #settings_input {
 	border: 1px solid #ccc;
     height: 20px;
@@ -596,7 +609,32 @@ textarea:focus {
     margin: 5px auto;
 }
 
+.btn {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+	border-radius: 2px;
+    padding: 13px 28px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.14);
+    text-transform: uppercase;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2);
+}
 
+.btn-primary {
+    background: #5a7ce2;
+    background: -moz-linear-gradient(-45deg, #5a7ce2 0%, #8283e8 50%, #5c5de8 51%, #565bd8 71%, #575cdb 100%);
+    background: -webkit-linear-gradient(-45deg, #5a7ce2 0%,#8283e8 50%,#5c5de8 51%,#565bd8 71%,#575cdb 100%);
+    background: linear-gradient(135deg, #5a7ce2 0%,#8283e8 50%,#5c5de8 51%,#565bd8 71%,#575cdb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a7ce2', endColorstr='#575cdb',GradientType=1 );
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    border: medium none;
+}
 
 
 

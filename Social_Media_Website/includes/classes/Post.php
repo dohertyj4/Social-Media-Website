@@ -8,7 +8,7 @@ class Post {
 		$this->user_obj = new User($con, $user);
 	}
 
-	public function submitPost($body, $user_to, $imageName) {
+	public function submitPost($body, $user_to) {
 		$body = strip_tags($body); //removes html tags 
 		$body = mysqli_real_escape_string($this->con, $body);
 		$body = str_replace('\r\n', "\n", $body);
@@ -19,19 +19,6 @@ class Post {
 
 
 			$body_array = preg_split("/\s+/", $body);
-
-			foreach($body_array as $key => $value) {
-
-				if(strpos($value, "www.youtube.com/watch?v=") !== false) {
-
-					$link = preg_split("!&!", $value);
-					$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
-					$value = "<br><iframe width=\'420\' height=\'315\' src=\'" . $value ."\'></iframe><br>";
-					$body_array[$key] = $value;
-
-				}
-
-			}
 			$body = implode(" ", $body_array);
 
 
@@ -46,7 +33,7 @@ class Post {
 				$user_to = "none";
 
 			//insert post 
-			$query = mysqli_query($this->con, "INSERT INTO posts VALUES('', '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0', '$imageName')");
+			$query = mysqli_query($this->con, "INSERT INTO posts VALUES('', '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')");
 			$returned_id = mysqli_insert_id($this->con);
 
 			//Insert notification
@@ -137,9 +124,8 @@ class Post {
 
 	}
 
-	public function loadPostsFriends($data, $limit) {
+	public function loadPosts() {
 
-		$page = $data['page']; 
 		$userLoggedIn = $this->user_obj->getUsername();
 
 
@@ -149,16 +135,11 @@ class Post {
 
 		if(mysqli_num_rows($data_query) > 0) {
 
-
-			$num_iterations = 0; //Number of results checked (not necasserily posted)
-			$count = 1;
-
 			while($row = mysqli_fetch_array($data_query)) {
 				$id = $row['id'];
 				$body = $row['body'];
 				$added_by = $row['added_by'];
 				$date_time = $row['date_added'];
-				$imagePath = $row['image'];
 
 				//Prepare user_to string so it can be included even if not posted to a user
 				if($row['user_to'] == "none") {
@@ -170,26 +151,7 @@ class Post {
 					$user_to = "to <a href='" . $row['user_to'] ."'>" . $user_to_name . "</a>";
 				}
 
-				//Check if user who posted, has their account closed
-				$added_by_obj = new User($this->con, $added_by);
-				if($added_by_obj->isClosed()) {
-					continue;
-				}
 
-				$user_logged_obj = new User($this->con, $userLoggedIn);
-				if($user_logged_obj->isFriend($added_by)){
-
-					if($num_iterations++ < $start)
-						continue; 
-
-
-					//Once 10 posts have been loaded, break
-					if($count > $limit) {
-						break;
-					}
-					else {
-						$count++;
-					}
 
 					if($userLoggedIn == $added_by)
 						$delete_button = "<button class='delete_button btn-danger' id='post$id'>X</button>";
@@ -290,14 +252,6 @@ class Post {
 						}
 					}
 
-					if($imagePath != "") {
-						$imageDiv = "<div class='postedImage'>
-										<img src='$imagePath'>
-									</div>";
-					}
-					else {
-						$imageDiv = "";
-					}
 
 					$str .= "<div class='status_post' onClick='javascript:toggle$id()'>
 								<div class='post_profile_pic'>
@@ -311,7 +265,7 @@ class Post {
 								<div id='post_body'>
 									$body
 									<br>
-									$imageDiv
+
 									<br>
 									<br>
 								</div>
@@ -326,7 +280,7 @@ class Post {
 								<iframe src='comment_frame.php?post_id=$id' id='comment_iframe' frameborder='0'></iframe>
 							</div>
 							<hr>";
-				}
+				
 
 				?>
 				<script>
@@ -351,12 +305,6 @@ class Post {
 				<?php
 
 			} //End while loop
-
-			if($count > $limit) 
-				$str .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'>
-							<input type='hidden' class='noMorePosts' value='false'>";
-			else 
-				$str .= "<input type='hidden' class='noMorePosts' value='true'><p style='text-align: centre;' class='noMorePostsText'> No more posts to show! </p>";
 		}
 
 		echo $str;
@@ -765,6 +713,64 @@ class Post {
 		}
 
 		echo $str;
+	}
+
+	public function loadUsers() {
+
+		$str = ""; //String to return 
+		$temp = "";
+
+		
+	
+		$data_query = mysqli_query($this->con, "SELECT * FROM users WHERE user_closed='no' ORDER BY id ASC");
+	
+		while($row = mysqli_fetch_array($data_query)) {
+	
+			$first_name = $row['first_name'];
+			$last_name = $row['last_name'];
+			$list_username = $row['username'];
+			$email = $row['email'];
+			$signup_date = $row['signup_date'];
+			$profile_pic = $row['profile_pic'];
+			$num_posts = $row['num_posts'];
+			$num_likes = $row['num_likes'];
+	
+			$str .= "<tbody>
+						<tr>
+							<td>$first_name</td>
+							<td>$last_name</td>
+							<td>$email</td>
+							<td><a href=''><img src='$profile_pic'></a></td>
+							
+							<td>$num_posts</td>
+							<td>$num_likes</td>
+							<td>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<form action='register.php' method='POST'>
+								<div class='btn-group'>
+									<button class='btn btn-primary btn-sm' name='$list_username'>Add</button>
+								</div>
+							</form>
+							</td>
+						</tr>                                                   
+					</tbody>";
+
+			} //End of while loop
+
+
+			echo $str;
+
+			//if(isset($_POST[$list_username])) {
+			//	$user = new User($con, $userLoggedIn);
+			//	$user->sendRequest($list_username);
+			//}
+
+
+		
+
+		
+		
+		
 	}
 
 
